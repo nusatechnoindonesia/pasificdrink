@@ -1,32 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\DashboardController;
 
-// Halaman utama
 Route::get('/', function () {
     return view('home');
 });
 
-// Halaman promo
-Route::get('/promo', function () {
-    return view('promo');
-});
-
-// Halaman product
-Route::get('/product', function () {
-    return view('product');
-});
-
-// ==============================
-// 🔐 Login Admin
-// ==============================
-Route::get('/admin/login', function () {
-    return view('admin.login'); // file resources/views/admin/login.blade.php
-})->name('admin.login');
-
-// Post login (nanti ke controller)
-Route::post('/admin/login', [\App\Http\Controllers\Admin\AuthController::class, 'login'])
-    ->name('admin.login.post');
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-})->name('admin.dashboard');
+// PASTIKAN ROUTE INI ADA!
+Route::get('/admin/login', [AuthController::class, 'showLogin']);
+Route::post('/admin/login', [AuthController::class, 'login'])->name('admin.login'); 
+Route::post('/admin/logout', [AuthController::class, 'logout'])->name('admin.logout');
+Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');

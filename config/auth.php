@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admin_users', // Provider yang benar
+        ],
     ],
 
     /*
@@ -62,15 +66,13 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\User::class),
+            'model' => App\Models\User::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'admin_users' => [ // INI YANG HARUS DIPERBAIKI
+            'driver' => 'eloquent',
+            'model' => App\Models\PenggunaAdmin::class, // GANTI INI
+        ],
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Resetting Passwords
@@ -90,26 +92,21 @@ return [
     |
     */
 
-    'passwords' => [
+      'passwords' => [
         'users' => [
             'provider' => 'users',
             'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
             'expire' => 60,
             'throttle' => 60,
         ],
+        // Opsional: Tambahkan untuk reset password admin
+        'admin_users' => [
+            'provider' => 'admin_users',
+            'table' => 'admin_password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Password Confirmation Timeout
-    |--------------------------------------------------------------------------
-    |
-    | Here you may define the number of seconds before a password confirmation
-    | window expires and users are asked to re-enter their password via the
-    | confirmation screen. By default, the timeout lasts for three hours.
-    |
-    */
-
     'password_timeout' => env('AUTH_PASSWORD_TIMEOUT', 10800),
-
 ];

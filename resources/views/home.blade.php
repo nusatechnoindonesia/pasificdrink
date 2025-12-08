@@ -97,6 +97,224 @@
             to { transform: rotate(360deg); }
         }
         
+        /* ===== PROMO POPUP PREMIUM ===== */
+        .promo-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease;
+        }
+        
+        .promo-popup.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .promo-popup-content {
+            background: linear-gradient(135deg, #0a192f 0%, #1a365d 100%);
+            border-radius: 30px;
+            width: 90%;
+            max-width: 500px;
+            overflow: hidden;
+            position: relative;
+            transform: scale(0.8);
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border: 2px solid var(--primary-blue-light);
+            box-shadow: 0 30px 80px rgba(0, 102, 255, 0.4);
+        }
+        
+        .promo-popup.active .promo-popup-content {
+            transform: scale(1);
+        }
+        
+        .promo-popup-header {
+            background: var(--gradient-primary);
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .promo-popup-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .promo-popup-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+        
+        .promo-popup-subtitle {
+            font-size: 1.3rem;
+            color: white;
+            opacity: 0.9;
+            font-weight: 600;
+        }
+        
+        .promo-popup-body {
+            padding: 2.5rem;
+            text-align: center;
+        }
+        
+        .promo-feature {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border-left: 4px solid var(--accent-gold);
+        }
+        
+        .promo-feature-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .promo-feature-text {
+            flex: 1;
+            text-align: left;
+        }
+        
+        .promo-feature-text h4 {
+            color: white;
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .promo-feature-text p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        .promo-cta {
+            background: var(--gradient-gold);
+            color: #000;
+            border: none;
+            padding: 1.2rem 2.5rem;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            margin: 2rem auto 1rem;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+        }
+        
+        .promo-cta:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.5);
+        }
+        
+        .promo-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        
+        .promo-close:hover {
+            background: var(--gradient-primary);
+            transform: rotate(90deg);
+        }
+        
+        .promo-app-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .app-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .app-btn:hover {
+            background: var(--gradient-primary);
+            transform: translateY(-3px);
+            border-color: transparent;
+        }
+        
+        .app-btn i {
+            font-size: 1.5rem;
+        }
+        
+        .app-btn-text {
+            text-align: left;
+        }
+        
+        .app-btn-text small {
+            display: block;
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+        
+        .app-btn-text strong {
+            font-size: 1.1rem;
+        }
+        
         /* ===== HEADER PREMIUM BIRU GACOR ===== */
         .main-header {
             background: linear-gradient(135deg, rgba(0, 102, 255, 0.95) 0%, rgba(0, 51, 204, 0.95) 100%);
@@ -1179,6 +1397,18 @@
             .product-actions {
                 grid-template-columns: 1fr;
             }
+            
+            .promo-popup-title {
+                font-size: 2rem;
+            }
+            
+            .promo-popup-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .promo-app-buttons {
+                flex-direction: column;
+            }
         }
         
         @media (max-width: 576px) {
@@ -1201,6 +1431,15 @@
             .feature-card, .category-card, .product-card {
                 padding: 1.5rem;
             }
+            
+            .promo-popup-content {
+                width: 95%;
+                border-radius: 20px;
+            }
+            
+            .promo-popup-body {
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -1210,6 +1449,73 @@
 <div class="preloader">
     <div class="loader"></div>
     <div class="preloader-text">Pasifik Drink</div>
+</div>
+
+<!-- Promo Popup -->
+<div class="promo-popup" id="promoPopup">
+    <div class="promo-popup-content">
+        <button class="promo-close" onclick="closePromo()">
+            <i class="bi bi-x-lg"></i>
+        </button>
+        
+        <div class="promo-popup-header">
+            <h2 class="promo-popup-title">PASIFIK DRINK</h2>
+            <p class="promo-popup-subtitle">Free Instant Delivery!</p>
+        </div>
+        
+        <div class="promo-popup-body">
+            <div class="promo-feature">
+                <div class="promo-feature-icon">
+                    <i class="bi bi-truck"></i>
+                </div>
+                <div class="promo-feature-text">
+                    <h4>GRATIS PENGIRIMAN</h4>
+                    <p>Order minuman premium dengan pengiriman gratis ke seluruh area Jakarta</p>
+                </div>
+            </div>
+            
+            <div class="promo-feature">
+                <div class="promo-feature-icon">
+                    <i class="bi bi-lightning"></i>
+                </div>
+                <div class="promo-feature-text">
+                    <h4>INSTANT DELIVERY</h4>
+                    <p>Pesan sekarang, minuman premium Anda tiba dalam 60 menit</p>
+                </div>
+            </div>
+            
+            <div class="promo-feature">
+                <div class="promo-feature-icon">
+                    <i class="bi bi-gift"></i>
+                </div>
+                <div class="promo-feature-text">
+                    <h4>BONUS SPECIAL</h4>
+                    <p>Dapatkan bonus minuman gratis untuk setiap order pertama Anda</p>
+                </div>
+            </div>
+            
+            <button class="promo-cta" onclick="orderNow()">
+                <i class="bi bi-whatsapp"></i> ORDER SEKARANG
+            </button>
+            
+            <div class="promo-app-buttons">
+                <a href="#" class="app-btn">
+                    <i class="bi bi-phone"></i>
+                    <div class="app-btn-text">
+                        <small>Download on</small>
+                        <strong>App Store</strong>
+                    </div>
+                </a>
+                <a href="#" class="app-btn">
+                    <i class="bi bi-google-play"></i>
+                    <div class="app-btn-text">
+                        <small>Get it on</small>
+                        <strong>Google Play</strong>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Cart Modal -->
@@ -1494,8 +1800,10 @@
         <div class="row mb-4">
             <div class="col-12">
                 <div class="d-flex justify-content-center mb-4">
-                    <div class="btn-group" role="group">
+                    <div class="btn-group flex-wrap" role="group">
                         <button type="button" class="btn btn-outline-primary active" onclick="filterProducts('ALL')">Semua</button>
+                        <button type="button" class="btn btn-outline-primary" onclick="filterProducts('MIXER DRINK')">Mixer Drink</button>
+                        <button type="button" class="btn btn-outline-primary" onclick="filterProducts('BEER')">Beer</button>
                         <button type="button" class="btn btn-outline-primary" onclick="filterProducts('WINE')">Wine</button>
                         <button type="button" class="btn btn-outline-primary" onclick="filterProducts('VODKA')">Vodka</button>
                         <button type="button" class="btn btn-outline-primary" onclick="filterProducts('WHISKY')">Whisky</button>
@@ -1608,7 +1916,7 @@
                                     <i class="bi bi-envelope"></i>
                                 </div>
                                 <h5>Email</h5>
-                                <p style="color: rgba(255,255,255,0.8);">order@pasifikdrink.com</p>
+                                <p style="color: rgba(255,255,255,0.8);">pasifik.drink@gmail.com</p>
                             </div>
                         </div>
                         
@@ -1637,14 +1945,14 @@
     <div class="container footer-content">
         <div class="row">
             <!-- Logo & Info -->
-            <div class="col-lg-4 mb-4">
+            <div class="col-lg-4 col-md-6 mb-4">
                 <img src="images/logo-removebg-preview.png" class="footer-logo" alt="Pasifik Drink">
                 <p class="footer-description">
                     Distributor resmi minuman premium dengan sertifikasi lengkap. 
                     Komitmen kami adalah memberikan produk berkualitas dengan layanan terbaik.
                 </p>
                 <div class="social-links">
-                    <a href="#" class="social-link">
+                    <a href="https://wa.me/6281234567890" class="social-link" target="_blank">
                         <i class="bi bi-whatsapp"></i>
                     </a>
                     <a href="#" class="social-link">
@@ -1660,35 +1968,46 @@
             </div>
             
             <!-- Quick Links -->
-            <div class="col-lg-2 col-md-4 col-sm-6 mb-4">
+            <div class="col-lg-4 col-md-6 mb-4">
                 <h5 class="footer-heading">Menu</h5>
                 <ul class="footer-links">
                     <li><a href="#home"><i class="bi bi-chevron-right"></i> Beranda</a></li>
                     <li><a href="#categories"><i class="bi bi-chevron-right"></i> Kategori</a></li>
                     <li><a href="#products"><i class="bi bi-chevron-right"></i> Produk</a></li>
                     <li><a href="#about"><i class="bi bi-chevron-right"></i> Tentang</a></li>
-                </ul>
-            </div>
-            
-            <!-- Information -->
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                <h5 class="footer-heading">Informasi</h5>
-                <ul class="footer-links">
-                    <li><a href="#"><i class="bi bi-chevron-right"></i> Syarat & Ketentuan</a></li>
-                    <li><a href="#"><i class="bi bi-chevron-right"></i> Kebijakan Privasi</a></li>
-                    <li><a href="#"><i class="bi bi-chevron-right"></i> FAQ</a></li>
-                    <li><a href="#"><i class="bi bi-chevron-right"></i> Cara Order</a></li>
+                    <li><a href="#contact"><i class="bi bi-chevron-right"></i> Kontak</a></li>
                 </ul>
             </div>
             
             <!-- Contact -->
-            <div class="col-lg-3 col-md-4 col-sm-12 mb-4">
+            <div class="col-lg-4 col-md-12 mb-4">
                 <h5 class="footer-heading">Kontak</h5>
                 <ul class="footer-links">
-                    <li><a href="https://wa.me/6281234567890"><i class="bi bi-whatsapp me-2"></i>+62 812-3456-7890</a></li>
-                    <li><a href="tel:02112345678"><i class="bi bi-telephone me-2"></i>(021) 1234-5678</a></li>
-                    <li><a href="mailto:order@pasifikdrink.com"><i class="bi bi-envelope me-2"></i>order@pasifikdrink.com</a></li>
-                    <li><a href="#"><i class="bi bi-clock me-2"></i>Buka 24/7</a></li>
+                    <li>
+                        <a href="https://wa.me/6281234567890" target="_blank">
+                            <i class="bi bi-whatsapp me-2"></i>+62 812-3456-7890
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tel:02112345678">
+                            <i class="bi bi-telephone me-2"></i>(021) 1234-5678
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mailto:order@pasifikdrink.com">
+                            <i class="bi bi-envelope me-2"></i>order@pasifikdrink.com
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="bi bi-clock me-2"></i>Buka 24/7
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="bi bi-geo-alt me-2"></i>Jakarta Pusat, Indonesia
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -1699,7 +2018,7 @@
             <div class="col-md-12 text-center">
                 <p class="copyright">
                     &copy; 2025 <strong>Pasifik Drink</strong>. All rights reserved. 
-                    <span class="d-block d-md-inline">Hanya untuk usia 21+</span>
+                    <span class="d-block d-md-inline mt-2 mt-md-0">Hanya untuk usia 21+</span>
                 </p>
                 <p class="copyright mt-2" style="font-size: 0.8rem; color: rgba(255,255,255,0.5);">
                     *Minum alkohol berlebihan berbahaya bagi kesehatan. Nikmati dengan bijak.
@@ -1717,31 +2036,31 @@
 <script>
     // ===== PRODUCT DATA =====
     const products = [
-        // Kategori MIXER DRINK (10 produk pertama)
+        // Kategori BEER
         {
             id: 1,
             name: "Kawa Blackcurrant",
-            category: "MIXER DRINK",
+            category: "BEER",
             image: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=400&auto=format&fit=crop&q=80",
             retail: 270000,
             grosir: 250000,
             minOrder: 12,
-            description: "Minuman mixer rasa blackcurrant premium"
+            description: "Minuman rasa blackcurrant premium"
         },
         {
             id: 2,
             name: "API HIJAU",
-            category: "MIXER DRINK",
+            category: "BEER",
             image: "https://images.unsplash.com/photo-1544145945-f90425340c7e?w=400&auto=format&fit=crop&q=80",
             retail: 270000,
             grosir: 250000,
             minOrder: 12,
-            description: "Minuman mixer hijau dengan rasa segar"
+            description: "Minuman hijau dengan rasa segar"
         },
         {
             id: 3,
             name: "ANGGUR KETAN HITAM KECIL",
-            category: "MIXER DRINK",
+            category: "BEER",
             image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400&auto=format&fit=crop&q=80",
             retail: 270000,
             grosir: 250000,
@@ -1751,16 +2070,16 @@
         {
             id: 4,
             name: "MIXMAX BIRU",
-            category: "MIXER DRINK",
+            category: "BEER",
             image: "https://images.unsplash.com/photo-1570598912132-0ba1dc952b7d?w=400&auto=format&fit=crop&q=80",
             retail: 270000,
             grosir: 250000,
             minOrder: 12,
-            description: "Minuman mixer max biru"
+            description: "Minuman max biru"
         },
         {
             id: 5,
-            name: "BEER",
+            name: "BEER LOKAL",
             category: "BEER",
             image: "https://images.unsplash.com/photo-1567696911981-8d2760b6b1c6?w=400&auto=format&fit=crop&q=80",
             retail: 270000,
@@ -1769,176 +2088,176 @@
             description: "Bir lokal premium"
         },
         
-        // WINE Products
+        // Kategori SOJU
         {
             id: 6,
-            name: "ANI ANGGUR HIJAU 580ML",
-            category: "WINE",
-            image: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&auto=format&fit=crop&q=80",
+            name: "SOJU PREMIUM 580ML",
+            category: "SOJU",
+            image: "https://images.unsplash.com/photo-1602922960040-1c36d6c4b864?w=400&auto=format&fit=crop&q=80",
             retail: 165000,
             grosir: 165000,
             minOrder: 12,
-            description: "Anggur hijau premium 580ml"
+            description: "Soju hijau premium 580ml"
         },
         {
             id: 7,
-            name: "ANI MAPPLE 580ML",
-            category: "WINE",
-            image: "https://images.unsplash.com/photo-1563241527-3004b7be0ff7?w=400&auto=format&fit=crop&q=80",
+            name: "SOJU MAPLE 580ML",
+            category: "SOJU",
+            image: "https://images.unsplash.com/photo-1602922960040-1c36d6c4b864?w=400&auto=format&fit=crop&q=60",
             retail: 165000,
             grosir: 165000,
             minOrder: 12,
-            description: "Anggur maple 580ml"
+            description: "Soju maple 580ml"
         },
         {
             id: 8,
-            name: "ANI ROSE PINK 580ML",
-            category: "WINE",
-            image: "https://images.unsplash.com/photo-1547595628-c61a29f496f0?w=400&auto=format&fit=crop&q=80",
+            name: "SOJU ROSE PINK 580ML",
+            category: "SOJU",
+            image: "https://images.unsplash.com/photo-1602922960040-1c36d6c4b864?w=400&auto=format&fit=crop&q=80",
             retail: 165000,
             grosir: 165000,
             minOrder: 12,
-            description: "Anggur rose pink 580ml"
+            description: "Soju rose pink 580ml"
         },
         {
             id: 9,
-            name: "ANI ANGGUR MERAH 580ML",
-            category: "WINE",
-            image: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&auto=format&fit=crop&q=60",
+            name: "SOJU MERAH 580ML",
+            category: "SOJU",
+            image: "https://images.unsplash.com/photo-1602922960040-1c36d6c4b864?w=400&auto=format&fit=crop&q=60",
             retail: 165000,
             grosir: 165000,
             minOrder: 12,
-            description: "Anggur merah premium 580ml"
+            description: "Soju merah premium 580ml"
         },
         
-        // VIBE Products
+        // Kategori WHISKY
         {
             id: 10,
-            name: "Vibe Black Tea 700ml",
-            category: "VIBE",
-            image: "https://images.unsplash.com/photo-1561047029-3000c68339ca?w=400&auto=format&fit=crop&q=80",
-            retail: 295000,
-            grosir: 275000,
-            minOrder: 12,
-            description: "Vibe black tea 700ml premium"
-        },
-        {
-            id: 11,
-            name: "Vibe Premium Vodka 700ML",
-            category: "VIBE",
+            name: "WHISKY BLACK TEA 700ML",
+            category: "WHISKY",
             image: "https://images.unsplash.com/photo-1602922960040-1c36d6c4b864?w=400&auto=format&fit=crop&q=80",
             retail: 295000,
             grosir: 275000,
             minOrder: 12,
-            description: "Vibe premium vodka 700ml"
+            description: "Whisky black tea 700ml premium"
+        },
+        {
+            id: 11,
+            name: "WHISKY PREMIUM 700ML",
+            category: "WHISKY",
+            image: "https://images.unsplash.com/photo-1602922960040-1c36d6c4b864?w=400&auto=format&fit=crop&q=80",
+            retail: 295000,
+            grosir: 275000,
+            minOrder: 12,
+            description: "Whisky premium 700ml"
         },
         {
             id: 12,
-            name: "Vibe Whisky 700ml",
-            category: "VIBE",
+            name: "WHISKY ORIGINAL 700ML",
+            category: "WHISKY",
             image: "https://images.unsplash.com/photo-1602922960040-1c36d6c4b864?w=400&auto=format&fit=crop&q=60",
             retail: 295000,
             grosir: 275000,
             minOrder: 12,
-            description: "Vibe whisky premium 700ml"
+            description: "Whisky original 700ml"
         },
         
-        // VODKA Products
+        // Kategori MIXER DRINK
         {
             id: 13,
-            name: "VODKA ICELAND 700ml ORI",
-            category: "VODKA",
+            name: "MIXER DRINK ICELAND 700ML",
+            category: "MIXER DRINK",
             image: "https://images.unsplash.com/photo-1602922960040-1c36d6c4b864?w=400&auto=format&fit=crop&q=80",
             retail: 85000,
             grosir: 80000,
             minOrder: 12,
-            description: "Vodka Iceland original 700ml"
+            description: "Mixer Drink Iceland 700ml"
         },
         {
             id: 14,
-            name: "GREY GOOSE VODKA",
-            category: "VODKA",
+            name: "MIXER DRINK GOOSE",
+            category: "MIXER DRINK",
             image: "https://images.unsplash.com/photo-1602922960040-1c36d6c4b864?w=400&auto=format&fit=crop&q=60",
             retail: 1250000,
             grosir: 1150000,
             minOrder: 12,
-            description: "Grey Goose vodka premium"
+            description: "Mixer Drink Goose premium"
         },
         
-        // WHISKY Products
+        // Kategori WINE
         {
             id: 15,
-            name: "JACK DANIEL'S",
-            category: "WHISKY",
+            name: "WINE DANIEL'S",
+            category: "WINE",
             image: "https://images.unsplash.com/photo-1602922960040-1c36d6c4b864?w=400&auto=format&fit=crop&q=80",
             retail: 750000,
             grosir: 650000,
             minOrder: 12,
-            description: "Jack Daniel's whisky original"
+            description: "Wine Daniel's original"
         },
         {
             id: 16,
-            name: "JW BLACK LABEL",
-            category: "WHISKY",
+            name: "WINE BLACK LABEL",
+            category: "WINE",
             image: "https://images.unsplash.com/photo-1602922960040-1c36d6c4b864?w=400&auto=format&fit=crop&q=60",
             retail: 980000,
             grosir: 900000,
             minOrder: 12,
-            description: "Johnnie Walker Black Label"
+            description: "Wine Black Label"
         },
         {
             id: 17,
-            name: "CHIVAS REGAL 12 Y.O",
-            category: "WHISKY",
+            name: "WINE REGAL 12 Y.O",
+            category: "WINE",
             image: "https://images.unsplash.com/photo-1602922960040-1c36d6c4b864?w=400&auto=format&fit=crop&q=80",
             retail: 750000,
             grosir: 675000,
             minOrder: 12,
-            description: "Chivas Regal 12 Years Old"
+            description: "Wine Regal 12 Years Old"
         },
         
-        // SOJU Products
+        // Kategori VODKA
         {
             id: 18,
-            name: "Jinro Chamisul Soju 360ML",
-            category: "SOJU",
+            name: "VODKA CHAMISUL 360ML",
+            category: "VODKA",
             image: "https://images.unsplash.com/photo-1602922960040-1c36d6c4b864?w=400&auto=format&fit=crop&q=80",
             retail: 75000,
             grosir: 65000,
             minOrder: 12,
-            description: "Jinro Chamisul Soju original"
+            description: "Vodka Chamisul original"
         },
         {
             id: 19,
-            name: "Daebak Soju Original 360ML",
-            category: "SOJU",
+            name: "VODKA ORIGINAL 360ML",
+            category: "VODKA",
             image: "https://images.unsplash.com/photo-1602922960040-1c36d6c4b864?w=400&auto=format&fit=crop&q=60",
             retail: 80000,
             grosir: 65000,
             minOrder: 12,
-            description: "Daebak Soju original"
+            description: "Vodka original 360ml"
         },
         
-        // COGNAC Products
+        // Kategori COGNAC
         {
             id: 20,
-            name: "MARTELL VSOP",
+            name: "COGNAC MARTELL VSOP",
             category: "COGNAC",
             image: "https://images.unsplash.com/photo-1602922960040-1c36d6c4b864?w=400&auto=format&fit=crop&q=80",
             retail: 1500000,
             grosir: 1350000,
             minOrder: 12,
-            description: "Martell VSOP cognac premium"
+            description: "Cognac Martell VSOP premium"
         },
         {
             id: 21,
-            name: "HENNESSY VSOP",
+            name: "COGNAC HENNESSY VSOP",
             category: "COGNAC",
             image: "https://images.unsplash.com/photo-1602922960040-1c36d6c4b864?w=400&auto=format&fit=crop&q=60",
             retail: 1550000,
             grosir: 1400000,
             minOrder: 12,
-            description: "Hennessy VSOP cognac"
+            description: "Cognac Hennessy VSOP"
         }
     ];
 
@@ -2098,6 +2417,35 @@
         document.body.style.overflow = 'auto';
     }
     
+    // ===== PROMO POPUP FUNCTIONS =====
+    function showPromo() {
+        // Cek jika sudah pernah ditutup dalam 24 jam
+        const lastClosed = localStorage.getItem('promoClosed');
+        const now = new Date().getTime();
+        
+        if (lastClosed && (now - parseInt(lastClosed)) < 24 * 60 * 60 * 1000) {
+            return; // Jangan tampilkan jika ditutup dalam 24 jam terakhir
+        }
+        
+        setTimeout(() => {
+            document.getElementById('promoPopup').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }, 1000); // Tampilkan setelah 1 detik
+    }
+    
+    function closePromo() {
+        document.getElementById('promoPopup').classList.remove('active');
+        document.body.style.overflow = 'auto';
+        
+        // Simpan waktu penutupan
+        localStorage.setItem('promoClosed', new Date().getTime().toString());
+    }
+    
+    function orderNow() {
+        closePromo();
+        window.open('https://wa.me/6281234567890?text=Halo%20Pasifik%20Drink,%20saya%20ingin%20order%20minuman%20premium!', '_blank');
+    }
+    
     // ===== PRODUCT RENDERING =====
     function renderProducts(category = 'ALL') {
         const productGrid = document.getElementById('productGrid');
@@ -2231,6 +2579,8 @@
             document.querySelector('.preloader').style.opacity = '0';
             setTimeout(() => {
                 document.querySelector('.preloader').style.display = 'none';
+                // Tampilkan promo popup setelah preloader selesai
+                showPromo();
             }, 500);
         }, 1500);
         
@@ -2272,11 +2622,19 @@
         document.addEventListener('click', function(event) {
             const cartModal = document.getElementById('cartModal');
             const cartBtn = document.querySelector('.cart-btn');
+            const promoPopup = document.getElementById('promoPopup');
             
+            // Close cart modal
             if (cartModal.classList.contains('open') && 
                 !cartModal.contains(event.target) && 
                 !cartBtn.contains(event.target)) {
                 closeCart();
+            }
+            
+            // Close promo popup when clicking outside
+            if (promoPopup.classList.contains('active') && 
+                !promoPopup.contains(event.target)) {
+                closePromo();
             }
         });
     });
