@@ -19,6 +19,7 @@ class KategoriProduk extends Model
         'urutan_tampil',
         'status'
     ];
+    
 
     public function produk()
     {

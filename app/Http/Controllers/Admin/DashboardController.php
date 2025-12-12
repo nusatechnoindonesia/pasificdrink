@@ -5,43 +5,36 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use App\Models\Produk;
-use App\Models\Pelanggan;
+use App\Models\Promo;
 use App\Models\Pesanan;
-use App\Models\KategoriProduk;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        $statistik = DB::table('dashboard_statistik')->first();
+        // Total Produk Aktif
+        $totalProduk = Produk::where('status', 'aktif')->count();
 
-        $produkTerlaris = Produk::with('kategori')
-            ->where('status', 'aktif')
-            ->orderBy('jumlah_dipesan', 'desc')
-            ->limit(5)
-            ->get();
+        // Total Promo Aktif
+        $totalPromo = Promo::where('status', 'aktif')->count();
 
-        $pesananTerbaru = Pesanan::orderBy('dibuat_pada', 'desc')
-            ->limit(10)
-            ->get();
+        // Pesanan Hari Ini
+$totalPesanan = Pesanan::whereMonth('dibuat_pada', now()->month)->count();
 
-        $produkStokSedikit = Produk::with('kategori')
-            ->where('status', 'aktif')
-            ->where('stok', '<=', 5)
-            ->orderBy('stok', 'asc')
-            ->get();
+        // Pendapatan Bulan Ini (sum total_akhir)
+        $totalPendapatan = Pesanan::where('status_pesanan', 'selesai')
+            ->whereMonth('dibuat_pada', now()->month)
+            ->sum('total_akhir');
 
-        $penjualanHarian = DB::table('laporan_harian')
-            ->orderBy('tanggal', 'desc')
-            ->limit(7)
-            ->get();
+        // Recent Activity - ambil 10 pesanan terbaru
+        $pesananTerbaru = Pesanan::orderBy('dibuat_pada', 'desc')->limit(10)->get();
 
         return view('admin.dashboard', compact(
-            'statistik',
-            'produkTerlaris',
+            'totalProduk',
+            'totalPromo',
+            'totalPesanan',
+            'totalPendapatan',
             'pesananTerbaru',
-            'produkStokSedikit',
-            'penjualanHarian'
         ));
     }
 }

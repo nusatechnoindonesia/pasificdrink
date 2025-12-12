@@ -968,11 +968,7 @@
                             <i class="fas fa-store"></i> Katalog
                         </a>
                     </li>
-                    <li class="nav-item mt-5">
-                        <a class="nav-link" data-section="export">
-                            <i class="fas fa-file-export"></i> Export Data
-                        </a>
-                    </li>
+             
                 </ul>
             </div>
             
@@ -1118,12 +1114,7 @@
                                             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProductModal">
                                                 <i class="fas fa-plus-circle me-2"></i> Tambah Produk
                                             </button>
-                                            <button class="btn btn-success" onclick="exportProducts()">
-                                                <i class="fas fa-file-excel me-2"></i> Export Excel
-                                            </button>
-                                            <button class="btn btn-info" onclick="importProducts()">
-                                                <i class="fas fa-file-import me-2"></i> Import Data
-                                            </button>
+          
                                         </div>
                                     </div>
                                 </div>
@@ -1152,7 +1143,6 @@
                                             <th>Nama Produk</th>
                                             <th>Kategori</th>
                                             <th>Harga Retail</th>
-                                            <th>Harga Grosir</th>
                                             <th>Stok</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
@@ -1217,14 +1207,7 @@
                                             <label class="form-label">Harga Retail (Rp)</label>
                                             <input type="number" class="form-control" id="hargaRetail" placeholder="35000" required>
                                         </div>
-                                        <div class="col-md-4 mb-3">
-                                            <label class="form-label">Harga Grosir (Rp)</label>
-                                            <input type="number" class="form-control" id="hargaGrosir" placeholder="30000" required>
-                                        </div>
-                                        <div class="col-md-4 mb-3">
-                                            <label class="form-label">Min. Grosir (Botol)</label>
-                                            <input type="number" class="form-control" id="minGrosir" value="12" required>
-                                        </div>
+                             
                                     </div>
                                     
                                     <div class="row">
@@ -2000,7 +1983,6 @@
                     </td>
                     <td><span class="badge badge-primary">${produk.kategori}</span></td>
                     <td>Rp ${produk.hargaRetail.toLocaleString()}</td>
-                    <td>Rp ${produk.hargaGrosir.toLocaleString()}<br><small class="text-muted">(min ${produk.minGrosir} bot)</small></td>
                     <td>
                         <span class="badge ${produk.stok > 20 ? 'badge-success' : produk.stok > 5 ? 'badge-warning' : 'badge-danger'}">
                             ${produk.stok} botol
@@ -2106,10 +2088,7 @@
                                 <th>Harga Retail</th>
                                 <td><strong>Rp ${produk.hargaRetail.toLocaleString()}</strong></td>
                             </tr>
-                            <tr>
-                                <th>Harga Grosir</th>
-                                <td><strong>Rp ${produk.hargaGrosir.toLocaleString()}</strong> (min ${produk.minGrosir} bot)</td>
-                            </tr>
+                      
                             <tr>
                                 <th>Stok</th>
                                 <td><span class="badge ${produk.stok > 20 ? 'badge-success' : produk.stok > 5 ? 'badge-warning' : 'badge-danger'}">${produk.stok} botol</span></td>
@@ -2174,14 +2153,7 @@
                             <label class="form-label">Harga Retail (Rp)</label>
                             <input type="number" class="form-control" id="editHargaRetail" value="${produk.hargaRetail}" required>
                         </div>
-                        <div class="col-md-4 mb-3">
-                            <label class="form-label">Harga Grosir (Rp)</label>
-                            <input type="number" class="form-control" id="editHargaGrosir" value="${produk.hargaGrosir}" required>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label class="form-label">Min. Grosir (Botol)</label>
-                            <input type="number" class="form-control" id="editMinGrosir" value="${produk.minGrosir}" required>
-                        </div>
+                       
                     </div>
                     
                     <div class="row">

@@ -15,7 +15,336 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     
+
     <style>
+        /* Category Swiper for Mobile */
+.category-swiper {
+    padding: 10px 0 40px 0;
+    width: 100%;
+}
+
+.category-swiper .swiper-slide {
+    width: 50%; /* Untuk menampilkan 2 kategori per slide, jika ingin 1 per slide ganti jadi 100% */
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.category-swiper .category-card {
+    width: 100%;
+    margin: 0 5px;
+    height: 100%;
+}
+
+/* Atur agar di mobile yang sangat kecil, slide lebih kecil */
+@media (max-width: 576px) {
+    .category-swiper .swiper-slide {
+        width: 45%;
+    }
+}
+
+/* Untuk landscape atau tablet kecil, tampilkan 3 per slide */
+@media (min-width: 577px) and (max-width: 768px) {
+    .category-swiper .swiper-slide {
+        width: 33.333%;
+    }
+}
+
+/* Navigation buttons for category swiper */
+.category-swiper .swiper-button-next,
+.category-swiper .swiper-button-prev {
+    width: 36px;
+    height: 36px;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    box-shadow: var(--shadow-blue);
+    color: white;
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+.category-swiper .swiper-button-next:after,
+.category-swiper .swiper-button-prev:after {
+    font-size: 1rem;
+}
+
+/* Pagination */
+.category-swiper .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.category-swiper .swiper-pagination-bullet-active {
+    background: var(--primary-blue);
+}
+    </style>
+    <style>
+        
+        /* ===== PRODUCT SLIDER STYLES ===== */
+.swiper-container {
+    position: relative;
+    width: 100%;
+    padding: 10px 0 50px 0;
+    overflow: hidden;
+}
+
+.swiper-wrapper {
+    display: flex;
+    transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.swiper-slide {
+    flex-shrink: 0;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+}
+
+/* Product Card in Slider */
+.swiper-slide .product-card {
+    margin: 5px;
+    width: 100%;
+    max-width: 320px;
+    transition: all 0.4s ease;
+}
+
+.swiper-slide-active .product-card {
+    transform: scale(1.02);
+    box-shadow: var(--shadow-blue-xl);
+}
+
+/* Navigation Buttons */
+.swiper-button-next, .swiper-button-prev {
+    width: 48px;
+    height: 48px;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    box-shadow: var(--shadow-blue);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0.8;
+}
+
+.swiper-button-next:hover, .swiper-button-prev:hover {
+    opacity: 1;
+    transform: translateY(-50%) scale(1.1);
+    background: var(--gradient-primary-dark);
+}
+
+.swiper-button-next {
+    right: 15px;
+}
+
+.swiper-button-prev {
+    left: 15px;
+}
+
+.swiper-button-next::after, .swiper-button-prev::after {
+    content: none;
+}
+
+/* Pagination Dots */
+.swiper-pagination {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+}
+
+.swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 1;
+    margin: 0 5px;
+    transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+    background: var(--primary-blue);
+    transform: scale(1.3);
+    box-shadow: 0 0 10px rgba(0, 102, 255, 0.5);
+}
+
+/* Scrollbar */
+.swiper-scrollbar {
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    width: 80%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+}
+
+.swiper-scrollbar-drag {
+    background: var(--gradient-primary);
+    border-radius: 2px;
+}
+
+/* Mobile Hint */
+.mobile-hint {
+    animation: pulseHint 2s infinite;
+}
+
+@keyframes pulseHint {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+}
+
+/* ===== RESPONSIVE DESIGN FOR MOBILE ===== */
+@media (max-width: 768px) {
+    /* Slider Container */
+    .swiper-container {
+        padding: 0 0 40px 0;
+    }
+    
+    /* Navigation Buttons - Smaller on Mobile */
+    .swiper-button-next, .swiper-button-prev {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+        display: none; /* Sembunyikan di mobile, pakai swipe gesture saja */
+    }
+    
+    /* Product Cards - Optimized for Mobile */
+    .swiper-slide .product-card {
+        max-width: 280px;
+        margin: 10px;
+        transform: scale(0.98);
+        transition: all 0.3s ease;
+    }
+    
+    .swiper-slide-active .product-card {
+        transform: scale(1);
+    }
+    
+    /* Product Card Content - Adjust for Mobile */
+    .product-info {
+        padding: 1.2rem;
+    }
+    
+    .product-title {
+        font-size: 1rem;
+        min-height: 48px;
+    }
+    
+    .product-price .price-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+    }
+    
+    .price-value, .price-retail, .price-grosir {
+        font-size: 0.9rem;
+    }
+    
+    /* Product Actions - Stack vertically on mobile */
+    .product-actions {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+    }
+    
+    .btn-add-cart, .btn-whatsapp {
+        grid-column: span 3;
+        font-size: 0.85rem;
+        padding: 0.6rem;
+    }
+    
+    /* Filter Buttons - Scrollable on mobile */
+    .btn-group {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        padding-bottom: 10px;
+    }
+    
+    .btn-group .btn {
+        white-space: nowrap;
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+    }
+    
+    /* Mobile Touch Improvements */
+    .swiper-wrapper {
+        padding: 0 15px; /* Add padding for better touch area */
+    }
+    
+    /* Hide scrollbar on mobile */
+    .swiper-scrollbar {
+        display: none;
+    }
+    
+    /* Show gesture hint only on mobile */
+    .mobile-hint {
+        display: block !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .swiper-slide .product-card {
+        max-width: 260px;
+    }
+    
+    .swiper-pagination-bullet {
+        width: 8px;
+        height: 8px;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1rem;
+    }
+    
+    /* More compact layout for very small screens */
+    .product-image-container {
+        height: 160px;
+    }
+    
+    .feature-icon, .category-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .swiper-button-next, .swiper-button-prev {
+        display: none; /* Hide arrows on touch devices */
+    }
+    
+    .swiper-container {
+        cursor: grab;
+    }
+    
+    .swiper-container:active {
+        cursor: grabbing;
+    }
+    
+    /* Better touch target sizes */
+    .btn-quantity, .btn-add-cart, .btn-whatsapp {
+        min-height: 44px; /* Apple's recommended minimum touch target */
+    }
+}
         :root {
             --primary-blue: #0066FF;
             --primary-blue-light: #3399FF;
@@ -1451,72 +1780,7 @@
     <div class="preloader-text">Pasifik Drink</div>
 </div>
 
-<!-- Promo Popup -->
-<div class="promo-popup" id="promoPopup">
-    <div class="promo-popup-content">
-        <button class="promo-close" onclick="closePromo()">
-            <i class="bi bi-x-lg"></i>
-        </button>
-        
-        <div class="promo-popup-header">
-            <h2 class="promo-popup-title">PASIFIK DRINK</h2>
-            <p class="promo-popup-subtitle">Free Instant Delivery!</p>
-        </div>
-        
-        <div class="promo-popup-body">
-            <div class="promo-feature">
-                <div class="promo-feature-icon">
-                    <i class="bi bi-truck"></i>
-                </div>
-                <div class="promo-feature-text">
-                    <h4>GRATIS PENGIRIMAN</h4>
-                    <p>Order minuman premium dengan pengiriman gratis ke seluruh area Jakarta</p>
-                </div>
-            </div>
-            
-            <div class="promo-feature">
-                <div class="promo-feature-icon">
-                    <i class="bi bi-lightning"></i>
-                </div>
-                <div class="promo-feature-text">
-                    <h4>INSTANT DELIVERY</h4>
-                    <p>Pesan sekarang, minuman premium Anda tiba dalam 60 menit</p>
-                </div>
-            </div>
-            
-            <div class="promo-feature">
-                <div class="promo-feature-icon">
-                    <i class="bi bi-gift"></i>
-                </div>
-                <div class="promo-feature-text">
-                    <h4>BONUS SPECIAL</h4>
-                    <p>Dapatkan bonus minuman gratis untuk setiap order pertama Anda</p>
-                </div>
-            </div>
-            
-            <button class="promo-cta" onclick="orderNow()">
-                <i class="bi bi-whatsapp"></i> ORDER SEKARANG
-            </button>
-            
-            <div class="promo-app-buttons">
-                <a href="#" class="app-btn">
-                    <i class="bi bi-phone"></i>
-                    <div class="app-btn-text">
-                        <small>Download on</small>
-                        <strong>App Store</strong>
-                    </div>
-                </a>
-                <a href="#" class="app-btn">
-                    <i class="bi bi-google-play"></i>
-                    <div class="app-btn-text">
-                        <small>Get it on</small>
-                        <strong>Google Play</strong>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 <!-- Cart Modal -->
 <div class="cart-modal" id="cartModal">
@@ -1703,93 +1967,191 @@
             <p class="section-subtitle animate__animated animate__fadeInUp">Pilih kategori minuman premium favorit Anda</p>
         </div>
         
-        <div class="row g-4">
-            <div class="col-lg-3 col-md-6">
-                <div class="category-card animate__animated animate__fadeInLeft" onclick="filterProducts('WINE')">
-                    <div class="category-icon">
-                        <i class="bi bi-cup-straw"></i>
+        <!-- Desktop Grid (hidden on mobile) -->
+        <div class="desktop-categories d-none d-lg-block">
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="category-card animate__animated animate__fadeInLeft" onclick="filterProducts('WINE')">
+                        <div class="category-icon">
+                            <i class="bi bi-cup-straw"></i>
+                        </div>
+                        <h4 class="category-name">WINE</h4>
+                        <div class="category-count">15+ produk</div>
                     </div>
-                    <h4 class="category-name">WINE</h4>
-                    <div class="category-count">15+ produk</div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="category-card animate__animated animate__fadeInLeft animate__delay-1s" onclick="filterProducts('VODKA')">
+                        <div class="category-icon">
+                            <i class="bi bi-droplet"></i>
+                        </div>
+                        <h4 class="category-name">VODKA</h4>
+                        <div class="category-count">12+ produk</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="category-card animate__animated animate__fadeInLeft animate__delay-2s" onclick="filterProducts('WHISKY')">
+                        <div class="category-icon">
+                            <i class="bi bi-cup-hot"></i>
+                        </div>
+                        <h4 class="category-name">WHISKY</h4>
+                        <div class="category-count">10+ produk</div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="category-card animate__animated animate__fadeInLeft animate__delay-3s" onclick="filterProducts('SOJU')">
+                        <div class="category-icon">
+                            <i class="bi bi-flower1"></i>
+                        </div>
+                        <h4 class="category-name">SOJU</h4>
+                        <div class="category-count">8+ produk</div>
+                    </div>
                 </div>
             </div>
             
-            <div class="col-lg-3 col-md-6">
-                <div class="category-card animate__animated animate__fadeInLeft animate__delay-1s" onclick="filterProducts('VODKA')">
-                    <div class="category-icon">
-                        <i class="bi bi-droplet"></i>
+            <div class="row mt-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="category-card" onclick="filterProducts('COGNAC')">
+                        <div class="category-icon">
+                            <i class="bi bi-gem"></i>
+                        </div>
+                        <h4 class="category-name">COGNAC</h4>
+                        <div class="category-count">6+ produk</div>
                     </div>
-                    <h4 class="category-name">VODKA</h4>
-                    <div class="category-count">12+ produk</div>
                 </div>
-            </div>
-            
-            <div class="col-lg-3 col-md-6">
-                <div class="category-card animate__animated animate__fadeInLeft animate__delay-2s" onclick="filterProducts('WHISKY')">
-                    <div class="category-icon">
-                        <i class="bi bi-cup-hot"></i>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="category-card" onclick="filterProducts('GIN')">
+                        <div class="category-icon">
+                            <i class="bi bi-flower2"></i>
+                        </div>
+                        <h4 class="category-name">GIN</h4>
+                        <div class="category-count">5+ produk</div>
                     </div>
-                    <h4 class="category-name">WHISKY</h4>
-                    <div class="category-count">10+ produk</div>
                 </div>
-            </div>
-            
-            <div class="col-lg-3 col-md-6">
-                <div class="category-card animate__animated animate__fadeInLeft animate__delay-3s" onclick="filterProducts('SOJU')">
-                    <div class="category-icon">
-                        <i class="bi bi-flower1"></i>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="category-card" onclick="filterProducts('TEQUILLA')">
+                        <div class="category-icon">
+                            <i class="bi bi-sun"></i>
+                        </div>
+                        <h4 class="category-name">TEQUILLA</h4>
+                        <div class="category-count">4+ produk</div>
                     </div>
-                    <h4 class="category-name">SOJU</h4>
-                    <div class="category-count">8+ produk</div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="category-card" onclick="filterProducts('ALL')">
+                        <div class="category-icon">
+                            <i class="bi bi-grid-3x3"></i>
+                        </div>
+                        <h4 class="category-name">SEMUA</h4>
+                        <div class="category-count">100+ produk</div>
+                    </div>
                 </div>
             </div>
         </div>
         
-        <div class="row mt-4">
-            <div class="col-lg-3 col-md-6">
-                <div class="category-card" onclick="filterProducts('COGNAC')">
-                    <div class="category-icon">
-                        <i class="bi bi-gem"></i>
+        <!-- Mobile Slider (hidden on desktop) -->
+        <div class="mobile-categories d-block d-lg-none">
+            <div class="swiper-container category-swiper">
+                <div class="swiper-wrapper">
+                    <!-- Slide 1: WINE -->
+                    <div class="swiper-slide">
+                        <div class="category-card" onclick="filterProducts('WINE')">
+                            <div class="category-icon">
+                                <i class="bi bi-cup-straw"></i>
+                            </div>
+                            <h4 class="category-name">WINE</h4>
+                            <div class="category-count">15+ produk</div>
+                        </div>
                     </div>
-                    <h4 class="category-name">COGNAC</h4>
-                    <div class="category-count">6+ produk</div>
-                </div>
-            </div>
-            
-            <div class="col-lg-3 col-md-6">
-                <div class="category-card" onclick="filterProducts('GIN')">
-                    <div class="category-icon">
-                        <i class="bi bi-flower2"></i>
+                    <!-- Slide 2: VODKA -->
+                    <div class="swiper-slide">
+                        <div class="category-card" onclick="filterProducts('VODKA')">
+                            <div class="category-icon">
+                                <i class="bi bi-droplet"></i>
+                            </div>
+                            <h4 class="category-name">VODKA</h4>
+                            <div class="category-count">12+ produk</div>
+                        </div>
                     </div>
-                    <h4 class="category-name">GIN</h4>
-                    <div class="category-count">5+ produk</div>
-                </div>
-            </div>
-            
-            <div class="col-lg-3 col-md-6">
-                <div class="category-card" onclick="filterProducts('TEQUILLA')">
-                    <div class="category-icon">
-                        <i class="bi bi-sun"></i>
+                    <!-- Slide 3: WHISKY -->
+                    <div class="swiper-slide">
+                        <div class="category-card" onclick="filterProducts('WHISKY')">
+                            <div class="category-icon">
+                                <i class="bi bi-cup-hot"></i>
+                            </div>
+                            <h4 class="category-name">WHISKY</h4>
+                            <div class="category-count">10+ produk</div>
+                        </div>
                     </div>
-                    <h4 class="category-name">TEQUILLA</h4>
-                    <div class="category-count">4+ produk</div>
-                </div>
-            </div>
-            
-            <div class="col-lg-3 col-md-6">
-                <div class="category-card" onclick="filterProducts('ALL')">
-                    <div class="category-icon">
-                        <i class="bi bi-grid-3x3"></i>
+                    <!-- Slide 4: SOJU -->
+                    <div class="swiper-slide">
+                        <div class="category-card" onclick="filterProducts('SOJU')">
+                            <div class="category-icon">
+                                <i class="bi bi-flower1"></i>
+                            </div>
+                            <h4 class="category-name">SOJU</h4>
+                            <div class="category-count">8+ produk</div>
+                        </div>
                     </div>
-                    <h4 class="category-name">SEMUA</h4>
-                    <div class="category-count">100+ produk</div>
+                    <!-- Slide 5: COGNAC -->
+                    <div class="swiper-slide">
+                        <div class="category-card" onclick="filterProducts('COGNAC')">
+                            <div class="category-icon">
+                                <i class="bi bi-gem"></i>
+                            </div>
+                            <h4 class="category-name">COGNAC</h4>
+                            <div class="category-count">6+ produk</div>
+                        </div>
+                    </div>
+                    <!-- Slide 6: GIN -->
+                    <div class="swiper-slide">
+                        <div class="category-card" onclick="filterProducts('GIN')">
+                            <div class="category-icon">
+                                <i class="bi bi-flower2"></i>
+                            </div>
+                            <h4 class="category-name">GIN</h4>
+                            <div class="category-count">5+ produk</div>
+                        </div>
+                    </div>
+                    <!-- Slide 7: TEQUILLA -->
+                    <div class="swiper-slide">
+                        <div class="category-card" onclick="filterProducts('TEQUILLA')">
+                            <div class="category-icon">
+                                <i class="bi bi-sun"></i>
+                            </div>
+                            <h4 class="category-name">TEQUILLA</h4>
+                            <div class="category-count">4+ produk</div>
+                        </div>
+                    </div>
+                    <!-- Slide 8: SEMUA -->
+                    <div class="swiper-slide">
+                        <div class="category-card" onclick="filterProducts('ALL')">
+                            <div class="category-icon">
+                                <i class="bi bi-grid-3x3"></i>
+                            </div>
+                            <h4 class="category-name">SEMUA</h4>
+                            <div class="category-count">100+ produk</div>
+                        </div>
+                    </div>
                 </div>
+                <!-- If we need pagination -->
+                <div class="swiper-pagination"></div>
+                
+                <!-- If we need navigation buttons -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
             </div>
         </div>
     </div>
 </section>
 
 <!-- Products Section -->
+<!-- Products Section with Slider -->
 <section id="products" class="py-5 product-section">
     <div class="container">
         <div class="text-center mb-5">
@@ -1797,6 +2159,7 @@
             <p class="section-subtitle animate__animated animate__fadeInUp">Minuman premium dengan harga grosir terbaik</p>
         </div>
         
+        <!-- Filter Buttons - Tetap sama -->
         <div class="row mb-4">
             <div class="col-12">
                 <div class="d-flex justify-content-center mb-4">
@@ -1814,8 +2177,32 @@
             </div>
         </div>
         
-        <div class="row g-4" id="productGrid">
-            <!-- Products will be loaded here dynamically -->
+        <!-- Swiper Slider Container -->
+        <div class="swiper-container">
+            <div class="swiper-wrapper" id="productGrid">
+                <!-- Products will be loaded here dynamically -->
+            </div>
+            
+            <!-- Navigation Arrows -->
+            <div class="swiper-button-next">
+                <i class="bi bi-chevron-right"></i>
+            </div>
+            <div class="swiper-button-prev">
+                <i class="bi bi-chevron-left"></i>
+            </div>
+            
+            <!-- Pagination Dots -->
+            <div class="swiper-pagination"></div>
+            
+            <!-- Scrollbar (Optional) -->
+            <div class="swiper-scrollbar"></div>
+        </div>
+        
+        <!-- Mobile Touch Hint -->
+        <div class="mobile-hint d-block d-md-none text-center mt-4 animate__animated animate__fadeInUp">
+            <p class="text-muted mb-1">
+                <i class="bi bi-arrow-left-right me-2"></i>Geser untuk lihat lebih banyak produk
+            </p>
         </div>
     </div>
 </section>
@@ -2275,28 +2662,35 @@
         renderCart();
     }
     
-    function addToCart(productId, quantity = 1) {
-        const product = products.find(p => p.id === productId);
-        if (!product) return;
-        
-        const existingItem = cart.find(item => item.id === productId);
-        
-        if (existingItem) {
-            existingItem.quantity += quantity;
-        } else {
-            cart.push({
-                id: product.id,
-                name: product.name,
-                category: product.category,
-                price: product.grosir,
-                quantity: quantity,
-                image: product.image
-            });
-        }
-        
-        saveCart();
-        showNotification(`${product.name} ditambahkan ke keranjang!`, 'success');
+function addToCart(productId, quantity = 1) {
+    const product = products.find(p => p.id === productId);
+    if (!product) return;
+    
+    const existingItem = cart.find(item => item.id === productId);
+    
+    if (existingItem) {
+        existingItem.quantity += quantity;
+    } else {
+        cart.push({
+            id: product.id,
+            name: product.name,
+            category: product.category,
+            price: product.grosir,
+            quantity: quantity,
+            image: product.image
+        });
     }
+    
+    saveCart();
+    
+    // Tampilkan notifikasi
+    showNotification(`${product.name} ditambahkan ke keranjang!`, 'success');
+    
+    // Buka modal keranjang setelah 500ms (setengah detik)
+    setTimeout(() => {
+        openCart();
+    }, 500);
+}
     
     function removeFromCart(productId) {
         cart = cart.filter(item => item.id !== productId);
@@ -2446,62 +2840,7 @@
         window.open('https://wa.me/6281234567890?text=Halo%20Pasifik%20Drink,%20saya%20ingin%20order%20minuman%20premium!', '_blank');
     }
     
-    // ===== PRODUCT RENDERING =====
-    function renderProducts(category = 'ALL') {
-        const productGrid = document.getElementById('productGrid');
-        let filteredProducts = products;
-        
-        if (category !== 'ALL') {
-            filteredProducts = products.filter(product => product.category === category);
-        }
-        
-        productGrid.innerHTML = '';
-        
-        filteredProducts.forEach(product => {
-            const discount = Math.round(((product.retail - product.grosir) / product.retail) * 100);
-            
-            const productCard = document.createElement('div');
-            productCard.className = 'col-lg-3 col-md-4 col-sm-6';
-            productCard.innerHTML = `
-                <div class="product-card">
-                    ${discount > 0 ? `<div class="product-badge">-${discount}%</div>` : ''}
-                    <div class="product-image-container">
-                        <img src="${product.image}" class="product-image" alt="${product.name}">
-                    </div>
-                    <div class="product-info">
-                        <div class="product-category">${product.category}</div>
-                        <h5 class="product-title">${product.name}</h5>
-                        <div class="product-price">
-                            <div class="price-row">
-                                <span class="price-label">Retail:</span>
-                                <span class="price-value price-retail">Rp ${product.retail.toLocaleString()}</span>
-                            </div>
-                            <div class="price-row">
-                                <span class="price-label">Grosir:</span>
-                                <span class="price-value price-grosir">Rp ${product.grosir.toLocaleString()}</span>
-                            </div>
-                        </div>
-                        <div class="min-order">Minimal order: ${product.minOrder} botol</div>
-                        
-                        <div class="product-actions">
-                            <button class="btn-quantity" onclick="updateProductQuantity(${product.id}, -1)">-</button>
-                            <div class="quantity-display" id="quantity-${product.id}">1</div>
-                            <button class="btn-quantity" onclick="updateProductQuantity(${product.id}, 1)">+</button>
-                            <button class="btn-add-cart" onclick="addToCart(${product.id}, getProductQuantity(${product.id}))">
-                                <i class="bi bi-cart-plus"></i> Tambah
-                            </button>
-                            <button class="btn-whatsapp" onclick="directOrder(${product.id})">
-                                <i class="bi bi-whatsapp"></i> Order Langsung
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            productGrid.appendChild(productCard);
-        });
-    }
-    
+
     function filterProducts(category) {
         renderProducts(category);
         // Update active button
@@ -2638,6 +2977,201 @@
             }
         });
     });
+    // ===== SWIPER SLIDER INITIALIZATION =====
+let productSwiper = null;
+
+function initProductSlider() {
+    productSwiper = new Swiper('.swiper-container', {
+        // Konfigurasi untuk mobile-first
+        slidesPerView: 'auto',
+        spaceBetween: 20,
+        centeredSlides: false,
+        freeMode: true, // Biarkan bebas di-scroll
+        grabCursor: true,
+        speed: 500,
+        
+        // Responsive breakpoints
+        breakpoints: {
+            // Mobile: 1.2 slide terlihat
+            320: {
+                slidesPerView: 1.2,
+                spaceBetween: 15,
+                freeMode: true
+            },
+            // Mobile landscape / tablet kecil
+            480: {
+                slidesPerView: 1.5,
+                spaceBetween: 15
+            },
+            // Tablet
+            768: {
+                slidesPerView: 2.2,
+                spaceBetween: 20,
+                freeMode: false
+            },
+            // Desktop kecil
+            992: {
+                slidesPerView: 3,
+                spaceBetween: 25
+            },
+            // Desktop besar
+            1200: {
+                slidesPerView: 4,
+                spaceBetween: 25
+            }
+        },
+        
+        // Navigation
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        
+        // Pagination
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+            dynamicBullets: true,
+        },
+        
+        // Scrollbar
+        scrollbar: {
+            el: '.swiper-scrollbar',
+            draggable: true,
+            hide: false,
+        },
+        
+        // Events
+        on: {
+            init: function () {
+                console.log('Swiper initialized!');
+            },
+            slideChange: function () {
+                // Bisa ditambahkan efek atau tracking di sini
+            }
+        }
+    });
+}
+
+// Update renderProducts function untuk kompatibel dengan Swiper
+function renderProducts(category = 'ALL') {
+    const productGrid = document.getElementById('productGrid');
+    let filteredProducts = category === 'ALL'
+        ? products
+        : products.filter(p => p.category === category);
+
+    productGrid.innerHTML = '';
+
+    filteredProducts.forEach(product => {
+        const discount = Math.round(((product.retail - product.grosir) / product.retail) * 100);
+
+        const slideDiv = document.createElement('div');
+        slideDiv.className = 'swiper-slide';
+
+        slideDiv.innerHTML = `
+            <div class="product-card">
+                ${discount > 0 ? `<div class="product-badge">-${discount}%</div>` : ''}
+                
+                <div class="product-image-container">
+                    <img src="${product.image}" class="product-image" alt="${product.name}">
+                </div>
+
+                <div class="product-info">
+                    <div class="product-category">${product.category}</div>
+                    <h5 class="product-title">${product.name}</h5>
+
+                    <div class="product-price">
+                        <div class="price-row">
+                            <span class="price-label">Retail:</span>
+                            <span class="price-value price-retail">Rp ${product.retail.toLocaleString()}</span>
+                        </div>
+                    </div>
+
+                    <div class="product-actions">
+                        <button class="btn-quantity" onclick="updateProductQuantity(${product.id}, -1)">-</button>
+                        <div class="quantity-display" id="quantity-${product.id}">1</div>
+                        <button class="btn-quantity" onclick="updateProductQuantity(${product.id}, 1)">+</button>
+
+                        <button class="btn-add-cart" onclick="addToCart(${product.id}, getProductQuantity(${product.id}))">
+                            <i class="bi bi-cart-plus"></i> Tambah
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        productGrid.appendChild(slideDiv);
+    });
+
+    if (productSwiper) {
+        productSwiper.update();
+    } else {
+        setTimeout(() => initProductSlider(), 100);
+    }
+}
+
+// Panggil initProductSlider saat halaman dimuat
+document.addEventListener('DOMContentLoaded', function() {
+
+    setTimeout(() => {
+        if (document.querySelector('.swiper-container')) {
+            initProductSlider();
+        }
+    }, 1500);
+});
+</script>
+<script>
+    // Category Swiper for Mobile
+let categorySwiper = null;
+
+function initCategorySwiper() {
+    if (window.innerWidth < 992) { // Hanya inisialisasi di mobile (lebar < 992px)
+        categorySwiper = new Swiper('.category-swiper', {
+            slidesPerView: 'auto',
+            spaceBetween: 10,
+            centeredSlides: false,
+            freeMode: true,
+            grabCursor: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                320: {
+                    slidesPerView: 2,
+                    spaceBetween: 10,
+                },
+                480: {
+                    slidesPerView: 2,
+                    spaceBetween: 15,
+                },
+                768: {
+                    slidesPerView: 3,
+                    spaceBetween: 20,
+                }
+            }
+        });
+    }
+}
+
+// Panggil fungsi inisialisasi saat halaman dimuat
+document.addEventListener('DOMContentLoaded', function() {
+    initCategorySwiper();
+});
+
+// Juga inisialisasi ulang saat ukuran window berubah (untuk responsive)
+window.addEventListener('resize', function() {
+    if (window.innerWidth >= 992 && categorySwiper) {
+        categorySwiper.destroy();
+        categorySwiper = null;
+    } else if (window.innerWidth < 992 && !categorySwiper) {
+        initCategorySwiper();
+    }
+});
 </script>
 </body>
 </html>
