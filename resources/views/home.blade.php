@@ -15,6 +15,296 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     
+    <style>
+        /* Update WhatsApp Float untuk mobile */
+@media (max-width: 768px) {
+    .whatsapp-float {
+        bottom: 80px;
+        right: 20px;
+        width: 55px;
+        height: 55px;
+        font-size: 1.8rem;
+    }
+    
+    /* Kurangi animasi float di mobile untuk konsumsi baterai */
+    .whatsapp-float {
+        animation: float 6s ease-in-out infinite;
+    }
+}
+        /* ===== MOBILE BOTTOM NAVIGATION ===== */
+.mobile-bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 51, 153, 0.95);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 1000;
+    box-shadow: 0 -5px 30px rgba(0, 0, 0, 0.3);
+    padding: 10px 0 5px;
+    display: none;
+}
+
+.mobile-bottom-nav.active {
+    display: block;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 8px 5px;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    position: relative;
+    min-width: 50px;
+    background: transparent;
+    border: none;
+}
+
+.nav-item i {
+    font-size: 1.3rem;
+    margin-bottom: 4px;
+    transition: all 0.3s ease;
+}
+
+.nav-item span {
+    font-size: 0.65rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.nav-item.active {
+    color: white;
+    background: linear-gradient(135deg, rgba(0, 102, 255, 0.2) 0%, rgba(0, 191, 255, 0.2) 100%);
+    transform: translateY(-5px);
+}
+
+.nav-item.active i {
+    color: var(--accent-gold);
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.nav-item:not(.active):hover {
+    color: white;
+    transform: translateY(-2px);
+}
+
+.cart-mobile-count {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    background: var(--gradient-gold);
+    color: #000;
+    font-size: 0.6rem;
+    font-weight: 900;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    animation: pulse 2s infinite;
+}
+
+.cart-mobile {
+    cursor: pointer;
+}
+
+/* Floating Action Button (FAB) untuk Mobile */
+.mobile-fab {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #FF416C 0%, #FF4B2B 100%);
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+    box-shadow: 0 10px 30px rgba(255, 65, 108, 0.4);
+    z-index: 999;
+    transition: all 0.3s ease;
+    animation: float 3s ease-in-out infinite;
+}
+
+.mobile-fab i {
+    animation: rotate 10s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Mobile Menu Overlay */
+.mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 9998;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.mobile-menu-overlay.active {
+    opacity: 1;
+    display: block;
+}
+
+.mobile-menu-content {
+    position: absolute;
+    bottom: 80px;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 51, 153, 0.95);
+    border-radius: 25px 25px 0 0;
+    padding: 2rem;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.mobile-menu-overlay.active .mobile-menu-content {
+    transform: translateY(0);
+}
+
+.mobile-menu-item {
+    display: flex;
+    align-items: center;
+    padding: 1.2rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.mobile-menu-item i {
+    font-size: 1.3rem;
+    margin-right: 1rem;
+    width: 30px;
+    color: var(--accent-teal);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .mobile-bottom-nav {
+        display: block;
+    }
+    
+    .mobile-fab {
+        display: flex;
+    }
+    
+    /* Adjust body padding to prevent content from being hidden behind bottom nav */
+    body {
+        padding-bottom: 70px;
+    }
+    
+    /* Adjust footer for mobile */
+    footer {
+        padding-bottom: 80px;
+    }
+    
+    /* Adjust hero section for mobile */
+    .hero-section {
+        padding-bottom: 100px;
+    }
+}
+
+@media (max-width: 576px) {
+    .mobile-bottom-nav {
+        padding: 8px 0 4px;
+    }
+    
+    .nav-item i {
+        font-size: 1.2rem;
+    }
+    
+    .nav-item span {
+        font-size: 0.6rem;
+    }
+    
+    .mobile-fab {
+        width: 55px;
+        height: 55px;
+        font-size: 1.3rem;
+    }
+}
+
+/* Animasi untuk mobile bottom nav */
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.mobile-bottom-nav {
+    animation: slideUp 0.5s ease forwards;
+}
+
+/* Haptic feedback simulation */
+.nav-item:active {
+    transform: scale(0.95);
+}
+
+/* Swipe up hint */
+.swipe-hint {
+    position: absolute;
+    bottom: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 102, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: bounceHint 2s infinite;
+}
+
+@keyframes bounceHint {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-5px); }
+}
+
+.swipe-hint i {
+    animation: swipeAnimation 2s infinite;
+}
+
+@keyframes swipeAnimation {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+    </style>
 <style>
 
     /* ===== HOT DEALS SECTION ===== */
@@ -2212,58 +2502,6 @@
     </div>
 </header>
 
-<!-- Hero Section -->
-<section id="home" class="hero-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-10 mx-auto">
-                <div class="hero-content">
-                    <h1 class="hero-title animate__animated animate__fadeInDown">
-                        DISTRIBUTOR MINUMAN PREMIUM
-                    </h1>
-                    
-                    <p class="hero-subtitle animate__animated animate__fadeInUp animate__delay-1s">
-                        Supplier resmi minuman alkohol premium dengan harga grosir terbaik. 
-                        Wine, Vodka, Whisky, Soju, Cocktail, dan berbagai minuman berkualitas lainnya.
-                    </p>
-                    
-                    <div class="d-flex flex-wrap gap-3 mb-4 justify-content-center">
-                        <a href="#products" class="btn btn-primary-custom animate__animated animate__pulse animate__delay-2s">
-                            <i class="bi bi-shop me-2"></i>Lihat Produk
-                        </a>
-                        <a href="#contact" class="btn btn-outline-custom animate__animated animate__pulse animate__delay-3s">
-                            <i class="bi bi-phone me-2"></i>Hubungi Kami
-                        </a>
-                    </div>
-                    
-                    <!-- Stats -->
-                    <div class="stats-container animate__animated animate__fadeInUp animate__delay-4s">
-                        <div class="row text-center">
-                            <div class="col-md-4">
-                                <div class="stat-item">
-                                    <div class="stat-number">100+</div>
-                                    <div class="stat-label">Jenis Minuman</div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="stat-item">
-                                    <div class="stat-number">500+</div>
-                                    <div class="stat-label">Klien Puas</div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="stat-item">
-                                    <div class="stat-number">24/7</div>
-                                    <div class="stat-label">Layanan</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 <!-- Features Section -->
 <section class="py-5">
@@ -3847,5 +4085,190 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+<script>
+    // ===== MOBILE BOTTOM NAV FUNCTIONS =====
+function updateCartMobileCount() {
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    document.getElementById('cartMobileCount').textContent = totalItems;
+}
+
+// Update cart count function yang sudah ada
+function updateCartCount() {
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    document.getElementById('cartCount').textContent = totalItems;
+    updateCartMobileCount(); // Update mobile count juga
+}
+
+// Active navigation based on scroll position
+function updateActiveNav() {
+    if (window.innerWidth > 768) return;
+    
+    const sections = document.querySelectorAll('section');
+    const navItems = document.querySelectorAll('.nav-item');
+    const scrollPos = window.scrollY + 100;
+    
+    let currentSection = 'home';
+    
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        const sectionId = section.getAttribute('id');
+        
+        if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+            currentSection = sectionId;
+        }
+    });
+    
+    navItems.forEach(item => {
+        item.classList.remove('active');
+        const href = item.getAttribute('href');
+        if (href === `#${currentSection}`) {
+            item.classList.add('active');
+        }
+    });
+    
+    // Special case for cart button
+    if (currentSection === 'cart') {
+        document.querySelector('.cart-mobile').classList.add('active');
+    }
+}
+
+// Initialize mobile navigation
+function initMobileNav() {
+    if (window.innerWidth <= 768) {
+        document.querySelector('.mobile-bottom-nav').classList.add('active');
+        document.querySelector('.mobile-fab').style.display = 'flex';
+        updateActiveNav();
+    } else {
+        document.querySelector('.mobile-bottom-nav').classList.remove('active');
+        document.querySelector('.mobile-fab').style.display = 'none';
+    }
+}
+
+// Toggle mobile menu overlay
+function toggleMobileMenu() {
+    const overlay = document.querySelector('.mobile-menu-overlay');
+    overlay.classList.toggle('active');
+}
+
+// Smooth scroll for mobile nav
+document.querySelectorAll('.nav-item').forEach(item => {
+    item.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href && href.startsWith('#')) {
+            e.preventDefault();
+            const targetId = href.substring(1);
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+                // Close mobile menu if open
+                document.querySelector('.mobile-menu-overlay').classList.remove('active');
+                
+                // Update active nav
+                document.querySelectorAll('.nav-item').forEach(nav => {
+                    nav.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                // Smooth scroll
+                window.scrollTo({
+                    top: targetElement.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+            }
+        }
+    });
+});
+
+// Update pada event listener DOMContentLoaded yang sudah ada:
+document.addEventListener('DOMContentLoaded', function() {
+    // ... existing code ...
+    
+    // Initialize mobile navigation
+    initMobileNav();
+    updateCartMobileCount();
+    
+    // Update active nav on scroll
+    window.addEventListener('scroll', updateActiveNav);
+    
+    // Handle resize
+    window.addEventListener('resize', initMobileNav);
+    
+    // Close mobile menu when clicking overlay
+    document.querySelector('.mobile-menu-overlay').addEventListener('click', function(e) {
+        if (e.target === this) {
+            this.classList.remove('active');
+        }
+    });
+});
+
+// Update pada saveCart function yang sudah ada:
+function saveCart() {
+    localStorage.setItem('pasifikDrinkCart', JSON.stringify(cart));
+    updateCartCount();
+    updateCartMobileCount(); // Tambah ini
+    renderCart();
+}
+
+function updateCartMenuCount() {
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    document.getElementById('cartMenuCount').textContent = totalItems;
+}
+
+// Update saveCart function lagi:
+function saveCart() {
+    localStorage.setItem('pasifikDrinkCart', JSON.stringify(cart));
+    updateCartCount();
+    updateCartMobileCount();
+    updateCartMenuCount(); // Tambah ini
+    renderCart();
+}
+
+// Tambahkan kode untuk menghilangkan swipe hint setelah scroll
+let hintShown = false;
+window.addEventListener('scroll', function() {
+    if (!hintShown && window.scrollY > 100) {
+        document.getElementById('swipeHint').style.opacity = '0';
+        document.getElementById('swipeHint').style.transform = 'translateX(-50%) translateY(10px)';
+        document.getElementById('swipeHint').style.transition = 'all 0.3s ease';
+        
+        setTimeout(() => {
+            document.getElementById('swipeHint').style.display = 'none';
+        }, 300);
+        
+        hintShown = true;
+    }
+});
+</script>
+
+
+<!-- Swipe Up Hint (akan hilang setelah pertama kali di-scroll) -->
+
+<!-- Mobile Bottom Navigation -->
+<nav class="mobile-bottom-nav d-block d-lg-none">
+    <div class="nav-container">
+        <a href="#home" class="nav-item active">
+            <i class="bi bi-house"></i>
+            <span>Beranda</span>
+        </a>
+        <a href="#categories" class="nav-item">
+            <i class="bi bi-grid-3x3"></i>
+            <span>Kategori</span>
+        </a>
+        <a href="#products" class="nav-item">
+            <i class="bi bi-shop"></i>
+            <span>Produk</span>
+        </a>
+        <a href="#contact" class="nav-item">
+            <i class="bi bi-chat"></i>
+            <span>Chat</span>
+        </a>
+        <button class="nav-item cart-mobile" onclick="openCart()">
+            <i class="bi bi-cart3"></i>
+            <span>Keranjang</span>
+            <span class="cart-mobile-count" id="cartMobileCount">0</span>
+        </button>
+    </div>
+</nav>
 </body>
 </html>
