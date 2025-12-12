@@ -15,7 +15,356 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     
+<style>
 
+    /* ===== HOT DEALS SECTION ===== */
+.deals-swiper {
+    width: 100%;
+    padding: 0 0 40px 0;
+    margin: 0 -10px;
+    width: calc(100% + 20px);
+}
+
+.deals-swiper .swiper-wrapper {
+    padding: 0 10px;
+}
+
+/* Deal Card */
+.deal-card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    transition: all 0.4s ease;
+    height: 100%;
+    cursor: pointer;
+}
+
+.deal-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary-blue-light);
+    box-shadow: 0 20px 40px rgba(0, 102, 255, 0.2);
+}
+
+.deal-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: linear-gradient(135deg, #FF416C 0%, #FF4B2B 100%);
+    color: white;
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 2;
+    box-shadow: 0 5px 15px rgba(255, 65, 108, 0.3);
+}
+
+.deal-image-container {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.deal-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.deal-card:hover .deal-image {
+    transform: scale(1.1);
+}
+
+.deal-content {
+    padding: 1.5rem;
+}
+
+.deal-category {
+    font-size: 0.8rem;
+    color: var(--accent-teal);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.deal-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.deal-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.old-price {
+    font-size: 0.9rem;
+    text-decoration: line-through;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.new-price {
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: var(--accent-gold);
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.discount-badge {
+    background: rgba(0, 230, 204, 0.1);
+    color: var(--accent-teal);
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    border: 1px solid rgba(0, 230, 204, 0.3);
+}
+
+.deal-actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.btn-deal-detail {
+    flex: 1;
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 0.75rem;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.btn-deal-detail:hover {
+    background: var(--gradient-primary-dark);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-blue);
+}
+
+.btn-deal-whatsapp {
+    flex: 1;
+    background: #25D366;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 0.75rem;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.btn-deal-whatsapp:hover {
+    background: #128C7E;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+}
+
+/* Navigation for Deals Swiper */
+.deals-next, .deals-prev {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: white;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.deals-next:hover, .deals-prev:hover {
+    background: var(--gradient-primary);
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.deals-next::after, .deals-prev::after {
+    content: none;
+}
+
+.deals-next {
+    right: 5px !important;
+}
+
+.deals-prev {
+    left: 5px !important;
+}
+
+/* Pagination for Deals Swiper */
+.deals-pagination {
+    bottom: 8px !important;
+}
+
+.deals-pagination .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.4);
+    opacity: 1;
+    margin: 0 4px;
+    transition: all 0.3s ease;
+}
+
+.deals-pagination .swiper-pagination-bullet-active {
+    background: var(--primary-blue);
+    width: 24px;
+    border-radius: 4px;
+}
+
+/* ===== PROMO MODAL ===== */
+.promo-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease;
+}
+
+.promo-modal.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.promo-modal-content {
+    background: linear-gradient(135deg, #0a192f 0%, #1a365d 100%);
+    border-radius: 30px;
+    width: 90%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    transform: scale(0.9);
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    border: 2px solid var(--primary-blue-light);
+    box-shadow: var(--shadow-blue-xl);
+}
+
+.promo-modal.open .promo-modal-content {
+    transform: scale(1);
+}
+
+.promo-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.promo-modal-close:hover {
+    background: var(--gradient-primary);
+    transform: rotate(90deg);
+}
+
+.promo-modal-body {
+    padding: 2.5rem;
+}
+
+/* Responsive for Hot Deals */
+@media (max-width: 768px) {
+    .deals-swiper {
+        padding: 0 0 35px 0;
+    }
+    
+    .deal-card {
+        max-width: 280px;
+        margin: 0 auto;
+    }
+    
+    .deal-image-container {
+        height: 180px;
+    }
+    
+    .deal-content {
+        padding: 1.2rem;
+    }
+    
+    .deal-title {
+        font-size: 1rem;
+    }
+    
+    .new-price {
+        font-size: 1.2rem;
+    }
+    
+    .deals-next, .deals-prev {
+        display: none !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .deal-card {
+        max-width: 260px;
+    }
+    
+    .deal-image-container {
+        height: 160px;
+    }
+    
+    .deal-actions {
+        flex-direction: column;
+    }
+    
+    .promo-modal-content {
+        width: 95%;
+        padding: 1rem;
+    }
+    
+    .promo-modal-body {
+        padding: 1.5rem;
+    }
+}
+</style>
     <style>
         /* Category Swiper for Mobile */
 .category-swiper {
@@ -2149,7 +2498,45 @@
         </div>
     </div>
 </section>
+<!-- Hot Deals / Promo Section -->
+<section id="hot-deals" class="py-4 py-md-5">
+    <div class="container">
+        <div class="text-center mb-4">
+            <h2 class="section-title" style="font-size: 1.8rem; font-weight: 800;">Hot Deals 🎉</h2>
+            <p class="section-subtitle" style="font-size: 0.95rem;">Promo spesial bundling dengan harga terbaik!</p>
+        </div>
 
+        <div class="swiper-container deals-swiper">
+            <div class="swiper-wrapper" id="dealsGrid">
+                <!-- Promo items will be loaded here dynamically -->
+            </div>
+            
+            <!-- Navigation Arrows -->
+            <div class="swiper-button-next deals-next">
+                <i class="bi bi-chevron-right"></i>
+            </div>
+            <div class="swiper-button-prev deals-prev">
+                <i class="bi bi-chevron-left"></i>
+            </div>
+            
+            <!-- Pagination Dots -->
+            <div class="swiper-pagination deals-pagination"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal for Promo Detail -->
+<div class="promo-modal" id="promoModal">
+    <div class="promo-modal-content">
+        <button class="promo-modal-close" onclick="closePromoModal()">
+            <i class="bi bi-x-lg"></i>
+        </button>
+        
+        <div class="promo-modal-body" id="promoModalBody">
+            <!-- Detail promo akan dimuat di sini -->
+        </div>
+    </div>
+</div>
 <!-- Products Section -->
 <!-- Products Section with Slider -->
 <section id="products" class="py-5 product-section">
@@ -3121,56 +3508,343 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <script>
-    // Category Swiper for Mobile
-let categorySwiper = null;
+    // ===== PROMO PRODUCTS DATA =====
+const promoProducts = [
+    {
+        id: 101,
+        name: "Paket Ultimate Party Bundle",
+        category: "BUNDLE",
+        image: "https://images.unsplash.com/photo-1570598912132-0ba1dc952b7d?w=800&auto=format&fit=crop&q=80",
+        retail: 3250000,
+        grosir: 2900000,
+        minOrder: 1,
+        description: "Paket lengkap untuk acara spesial Anda! Dapatkan 1 Wine + 2 Vodka + 3 Soju + Mixer dengan harga spesial. Hemat hingga Rp 350.000!",
+        bundleItems: [
+            "1 Wine Premium",
+            "2 Vodka Original",
+            "3 Soju Berbagai Rasa",
+            "6 Mixer Drink"
+        ],
+        bonuses: [
+            "Gratis 1 Ice Bucket Premium",
+            "Gratis Konsultasi Dekorasi Minuman",
+            "Pengiriman Gratis Area Jakarta"
+        ],
+        discount: 11 // dalam persen
+    },
+    {
+        id: 102,
+        name: "Wine & Cheese Combo",
+        category: "BUNDLE",
+        image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=800&auto=format&fit=crop&q=80",
+        retail: 1500000,
+        grosir: 1200000,
+        minOrder: 1,
+        description: "Nikmati Wine pilihan dengan keju premium. Cocok untuk acara santai bersama teman atau keluarga.",
+        bundleItems: [
+            "2 Wine Premium (Merlot & Chardonnay)",
+            "1 Paket Keju Premium",
+            "1 Set Alat Wine"
+        ],
+        bonuses: [
+            "Gratis Wine Opener",
+            "Gratis E-Book Pairing Wine & Cheese"
+        ],
+        discount: 20
+    },
+    {
+        id: 103,
+        name: "Vodka Party Pack",
+        category: "BUNDLE",
+        image: "https://images.unsplash.com/photo-1544145945-f90425340c7e?w=800&auto=format&fit=crop&q=80",
+        retail: 1800000,
+        grosir: 1500000,
+        minOrder: 1,
+        description: "Paket Vodka lengkap dengan berbagai rasa dan mixer. Sempurna untuk pesta!",
+        bundleItems: [
+            "3 Vodka Original (berbagai rasa)",
+            "12 Kaleng Mixer Drink",
+            "1 Set Gelas Premium"
+        ],
+        bonuses: [
+            "Gratis Cocktail Recipe Book",
+            "Gratis Aksesoris Bar"
+        ],
+        discount: 17
+    },
+    {
+        id: 104,
+        name: "Soju Night Bundle",
+        category: "BUNDLE",
+        image: "https://images.unsplash.com/photo-1602922960040-1c36d6c4b864?w=800&auto=format&fit=crop&q=80",
+        retail: 800000,
+        grosir: 650000,
+        minOrder: 1,
+        description: "Rasakan sensasi malam ala Korea dengan paket Soju lengkap ini.",
+        bundleItems: [
+            "5 Soju Berbagai Rasa",
+            "3 Kaleng Chilsung Cider",
+            "1 Set Snack Korea"
+        ],
+        bonuses: [
+            "Gratis Soju Glasses Set",
+            "Gratis Korean Snack Bonus"
+        ],
+        discount: 19
+    }
+];
 
-function initCategorySwiper() {
-    if (window.innerWidth < 992) { // Hanya inisialisasi di mobile (lebar < 992px)
-        categorySwiper = new Swiper('.category-swiper', {
-            slidesPerView: 'auto',
-            spaceBetween: 10,
-            centeredSlides: false,
-            freeMode: true,
-            grabCursor: true,
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
+// ===== HOT DEALS SLIDER =====
+let dealsSwiper = null;
+
+function initDealsSlider() {
+    dealsSwiper = new Swiper('.deals-swiper', {
+        slidesPerView: 'auto',
+        spaceBetween: 20,
+        centeredSlides: false,
+        freeMode: true,
+        grabCursor: true,
+        speed: 500,
+        
+        breakpoints: {
+            320: {
+                slidesPerView: 1.2,
+                spaceBetween: 15,
+                freeMode: true
             },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
+            480: {
+                slidesPerView: 1.5,
+                spaceBetween: 15
             },
-            breakpoints: {
-                320: {
-                    slidesPerView: 2,
-                    spaceBetween: 10,
-                },
-                480: {
-                    slidesPerView: 2,
-                    spaceBetween: 15,
-                },
-                768: {
-                    slidesPerView: 3,
-                    spaceBetween: 20,
-                }
+            640: {
+                slidesPerView: 2,
+                spaceBetween: 18
+            },
+            768: {
+                slidesPerView: 2.5,
+                spaceBetween: 20,
+                freeMode: false
+            },
+            992: {
+                slidesPerView: 3,
+                spaceBetween: 25
+            },
+            1200: {
+                slidesPerView: 4,
+                spaceBetween: 25
             }
-        });
+        },
+        
+        navigation: {
+            nextEl: '.deals-next',
+            prevEl: '.deals-prev',
+        },
+        
+        pagination: {
+            el: '.deals-pagination',
+            clickable: true,
+            dynamicBullets: true,
+        },
+        
+        on: {
+            init: function () {
+                console.log('Deals swiper initialized!');
+            }
+        }
+    });
+}
+
+function renderDeals() {
+    const dealsGrid = document.getElementById('dealsGrid');
+    
+    if (!dealsGrid) return;
+    
+    dealsGrid.innerHTML = '';
+    
+    promoProducts.forEach(promo => {
+        const discount = Math.round(((promo.retail - promo.grosir) / promo.retail) * 100);
+        
+        const slideDiv = document.createElement('div');
+        slideDiv.className = 'swiper-slide';
+        
+        slideDiv.innerHTML = `
+            <div class="deal-card" onclick="openPromoModal(${promo.id})">
+                <div class="deal-badge">HOT DEAL</div>
+                <div class="deal-image-container">
+                    <img src="${promo.image}" class="deal-image" alt="${promo.name}">
+                </div>
+                <div class="deal-content">
+                    <div class="deal-category">${promo.category}</div>
+                    <h5 class="deal-title">${promo.name}</h5>
+                    
+                    <div class="deal-price">
+                        <div>
+                            <div class="old-price">Rp ${promo.retail.toLocaleString()}</div>
+                            <div class="new-price">Rp ${promo.grosir.toLocaleString()}</div>
+                        </div>
+                        <div class="discount-badge">-${discount}%</div>
+                    </div>
+                    
+                    <div class="deal-actions">
+                        <button class="btn-deal-detail" onclick="event.stopPropagation(); openPromoModal(${promo.id})">
+                            <i class="bi bi-info-circle"></i> Detail
+                        </button>
+                        <button class="btn-deal-whatsapp" onclick="event.stopPropagation(); orderPromo(${promo.id})">
+                            <i class="bi bi-whatsapp"></i> Order
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        dealsGrid.appendChild(slideDiv);
+    });
+    
+    if (dealsSwiper) {
+        dealsSwiper.update();
+    } else {
+        setTimeout(() => {
+            initDealsSlider();
+        }, 100);
     }
 }
 
-// Panggil fungsi inisialisasi saat halaman dimuat
-document.addEventListener('DOMContentLoaded', function() {
-    initCategorySwiper();
-});
+// ===== PROMO MODAL FUNCTIONS =====
+function openPromoModal(promoId) {
+    const promo = promoProducts.find(p => p.id === promoId);
+    if (!promo) return;
+    
+    const modal = document.getElementById('promoModal');
+    const body = document.getElementById('promoModalBody');
+    
+    const discount = Math.round(((promo.retail - promo.grosir) / promo.retail) * 100);
+    
+    body.innerHTML = `
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="promo-modal-image">
+                    <img src="${promo.image}" alt="${promo.name}" style="width: 100%; border-radius: 20px;">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="promo-modal-info">
+                    <div class="d-flex align-items-center mb-3">
+                        <span class="deal-badge me-3">HOT DEAL</span>
+                        <span class="discount-badge">-${discount}%</span>
+                    </div>
+                    
+                    <h3 style="color: white; margin-bottom: 1rem;">${promo.name}</h3>
+                    <p style="color: rgba(255,255,255,0.9); margin-bottom: 1.5rem;">${promo.description}</p>
+                    
+                    <div class="price-section mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span style="color: rgba(255,255,255,0.8);">Harga Normal:</span>
+                            <span style="color: rgba(255,255,255,0.5); text-decoration: line-through; font-size: 1.2rem;">Rp ${promo.retail.toLocaleString()}</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span style="color: rgba(255,255,255,0.8); font-weight: 600;">Harga Promo:</span>
+                            <span style="color: var(--accent-gold); font-size: 2rem; font-weight: 900;">Rp ${promo.grosir.toLocaleString()}</span>
+                        </div>
+                        <div class="text-center" style="color: var(--accent-teal); font-weight: 600; font-size: 1.1rem;">
+                            <i class="bi bi-piggy-bank"></i> Hemat Rp ${(promo.retail - promo.grosir).toLocaleString()}
+                        </div>
+                    </div>
+                    
+                    <div class="bundle-items mb-4">
+                        <h5 style="color: white; margin-bottom: 1rem;"><i class="bi bi-box-seam"></i> Isi Paket:</h5>
+                        <ul style="color: rgba(255,255,255,0.9); padding-left: 1.5rem;">
+                            ${promo.bundleItems.map(item => `<li style="margin-bottom: 0.5rem;">${item}</li>`).join('')}
+                        </ul>
+                    </div>
+                    
+                    ${promo.bonuses && promo.bonuses.length > 0 ? `
+                    <div class="bonus-section mb-4">
+                        <h5 style="color: white; margin-bottom: 1rem;"><i class="bi bi-gift"></i> Bonus:</h5>
+                        <ul style="color: rgba(255,255,255,0.9); padding-left: 1.5rem;">
+                            ${promo.bonuses.map(bonus => `<li style="margin-bottom: 0.5rem;"><i class="bi bi-check-circle" style="color: var(--accent-gold);"></i> ${bonus}</li>`).join('')}
+                        </ul>
+                    </div>
+                    ` : ''}
+                    
+                    <div class="promo-modal-actions">
+                        <button class="btn-bundle-primary" style="width: 100%; padding: 1rem; font-size: 1.1rem;" onclick="orderPromo(${promo.id})">
+                            <i class="bi bi-whatsapp"></i> Pesan Sekarang via WhatsApp
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
 
-// Juga inisialisasi ulang saat ukuran window berubah (untuk responsive)
-window.addEventListener('resize', function() {
-    if (window.innerWidth >= 992 && categorySwiper) {
-        categorySwiper.destroy();
-        categorySwiper = null;
-    } else if (window.innerWidth < 992 && !categorySwiper) {
-        initCategorySwiper();
+function closePromoModal() {
+    const modal = document.getElementById('promoModal');
+    modal.classList.remove('open');
+    document.body.style.overflow = 'auto';
+}
+
+function orderPromo(promoId) {
+    const promo = promoProducts.find(p => p.id === promoId);
+    if (!promo) return;
+    
+    let message = `Halo Pasifik Drink! Saya ingin memesan *${promo.name}*:\n\n`;
+    message += `*Deskripsi:* ${promo.description}\n\n`;
+    message += `*Harga Normal:* Rp ${promo.retail.toLocaleString()}\n`;
+    message += `*Harga Promo:* Rp ${promo.grosir.toLocaleString()}\n`;
+    message += `*Hemat:* Rp ${(promo.retail - promo.grosir).toLocaleString()}\n\n`;
+    
+    if (promo.bundleItems && promo.bundleItems.length > 0) {
+        message += `*Isi Paket:*\n`;
+        promo.bundleItems.forEach((item, index) => {
+            message += `${index + 1}. ${item}\n`;
+        });
+        message += `\n`;
     }
+    
+    if (promo.bonuses && promo.bonuses.length > 0) {
+        message += `*Bonus:*\n`;
+        promo.bonuses.forEach((bonus, index) => {
+            message += `✓ ${bonus}\n`;
+        });
+        message += `\n`;
+    }
+    
+    message += `Mohon informasi lebih lanjut untuk pemesanan. Terima kasih!`;
+    
+    const encodedMessage = encodeURIComponent(message);
+    const phoneNumber = "6281234567890";
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    
+    window.open(whatsappURL, '_blank');
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+    // ... existing code ...
+    
+    // Render deals
+    renderDeals();
+    
+    // Close modal when clicking outside
+    document.addEventListener('click', function(event) {
+        const modal = document.getElementById('promoModal');
+        const content = document.querySelector('.promo-modal-content');
+        
+        if (modal.classList.contains('open') && 
+            !content.contains(event.target)) {
+            closePromoModal();
+        }
+    });
+    
+    // Close modal with ESC key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closePromoModal();
+        }
+    });
 });
 </script>
 </body>
